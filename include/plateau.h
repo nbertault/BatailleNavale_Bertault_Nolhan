@@ -10,9 +10,9 @@
 // État d'une case
 typedef enum {
     VIDE,           // Case non occupée, non ciblée
-    NAVIRE,         // Case occupée par un navire (non touché)
-    TOUCHE,         // Case occupée et touchée
-    MANQUE          // Case ciblée mais vide (à l'eau)
+    NAVIRE,         // Case occupée par un navire (non touché), 'O'
+    TOUCHE,         // Case occupée et touchée, 'X'
+    MANQUE          // Case ciblée mais vide (à l'eau), '-'
 } EtatCase;
 
 // Résultat d'un tir

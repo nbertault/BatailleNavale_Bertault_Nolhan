@@ -9,8 +9,10 @@
 
 int main(void) {
     printf("Hello, l'ENSIM !\n");
+    unsigned char saisie;
     EtatCase grille[10][10];
+    scanf("%c", saisie);
     initialiserGrille(grille);
-    afficherGrille(grille,1);
+    afficherGrille(grille,0);
     return 0;
 }
