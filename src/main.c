@@ -15,7 +15,7 @@ int main(void) {
     scanf("%3s", saisie);
     initialiserGrille(grille);
     afficherGrille(grille,0);
-    switch (convertirCoordonnees(&saisie,&pos)) {
+    switch (convertirCoordonnees(saisie,&pos)) {
         case 1:
             printf("Erreur ligne");
             break;
