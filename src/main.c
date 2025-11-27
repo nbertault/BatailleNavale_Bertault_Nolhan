@@ -12,7 +12,7 @@ int main(void) {
     EtatCase grille[10][10];
     Position pos;
     printf("Entrez la case visé\n");
-    scanf("%3s", &saisie);
+    scanf("%3s", saisie);
     initialiserGrille(grille);
     afficherGrille(grille,0);
     switch (convertirCoordonnees(&saisie,&pos)) {
