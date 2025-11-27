@@ -20,10 +20,21 @@ typedef enum {
     SOUS_MARIN,
     TORPILLEUR
 } TypeNavire;
-/*
+
+// Navire
+typedef struct {
+    TypeNavire type;
+    char nom[20];
+    int taille;
+    Position positions[5];      // Tableau des positions occupées
+    int casesTouchees;          // Nombre de cases touchées
+    int estCoule;               // 0 = non, 1 = oui
+} Navire;
+
 // Crée et initialise un navire selon son type
 Navire creerNavire(TypeNavire type);
 
+/*
 // Calcule les positions d'un navire à partir de sa position de départ
 void calculerPositions(Navire *navire, Position debut, Orientation orientation);
 

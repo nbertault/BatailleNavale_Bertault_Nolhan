@@ -12,16 +12,6 @@ typedef struct {
 } Position;
 
 /*
-// Navire
-typedef struct {
-    TypeNavire type;
-    char nom[20];
-    int taille;
-    Position positions[5];      // Tableau des positions occupées
-    int casesTouchees;          // Nombre de cases touchées
-    int estCoule;               // 0 = non, 1 = oui
-} Navire;
-
 // Plateau d'un joueur
 typedef struct {
     EtatCase grilleFlotte[10][10];  // Grille avec ses navires
