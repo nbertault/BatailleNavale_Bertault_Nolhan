@@ -5,7 +5,8 @@
 #include "../include/utilitaires.h"
 
 int convertirCoordonnees(const char *saisie, Position *pos) {
-    int erreur = 0, ligne, colonne;
+    int erreur = 0, ligne = -1, colonne = -1;
+
     if (saisie[0] >= 'A' && saisie[0] <= 'J')
         ligne = saisie[0] - 'A';
     else if (saisie[0] >= 'a' && saisie[0] <= 'j')

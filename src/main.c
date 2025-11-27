@@ -8,11 +8,25 @@
 #include "../include/utilitaires.h"
 
 int main(void) {
-    printf("Hello, l'ENSIM !\n");
-    unsigned char saisie;
+    char saisie[4];
     EtatCase grille[10][10];
-    scanf("%c", saisie);
+    Position pos;
+    printf("Entrez la case visé\n");
+    scanf("%3s", &saisie);
     initialiserGrille(grille);
     afficherGrille(grille,0);
+    switch (convertirCoordonnees(&saisie,&pos)) {
+        case 1:
+            printf("Erreur ligne");
+            break;
+        case 2:
+            printf("Erreur colonne");
+            break;
+        case 3:
+            printf("Format Invalide");
+            break;
+        default:
+            break;
+    }
     return 0;
 }
