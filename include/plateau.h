@@ -27,11 +27,11 @@ typedef enum {
 // Initialise une grille avec des cases vides
 void initialiserGrille(EtatCase grille[10][10]);
 
-/*
 // Vérifie si un placement est valide
 int verifierPlacement(EtatCase grille[10][10], Position debut,
                       int taille, Orientation orientation);
 
+/*
 // Place un navire sur la grille
 void placerNavireSurGrille(EtatCase grille[10][10], Navire *navire);
 
