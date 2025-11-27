@@ -24,6 +24,12 @@ typedef enum {
     TIR_DEJA_JOUE
 } ResultatTir;
 
+// Plateau d'un joueur
+typedef struct {
+    EtatCase grilleFlotte[10][10];  // Grille avec ses navires
+    EtatCase grilleRadar[10][10];   // Grille de suivi des tirs
+} Plateau;
+
 // Initialise une grille avec des cases vides
 void initialiserGrille(EtatCase grille[10][10]);
 

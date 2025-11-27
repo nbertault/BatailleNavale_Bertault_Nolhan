@@ -6,6 +6,7 @@
 #define ALGORITHMEFONDAMENTAUXTP3_AFFICHAGE_H
 #include "joueur.h"
 #include "plateau.h"
+#include <stdio.h>
 /*
 // Affiche l'écran d'accueil
 void afficherAccueil(void);

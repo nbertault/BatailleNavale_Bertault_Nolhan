@@ -12,19 +12,6 @@ typedef struct {
 } Position;
 
 /*
-// Plateau d'un joueur
-typedef struct {
-    EtatCase grilleFlotte[10][10];  // Grille avec ses navires
-    EtatCase grilleRadar[10][10];   // Grille de suivi des tirs
-} Plateau;
-
-// Joueur
-typedef struct {
-    char nom[50];
-    Plateau plateau;
-    Navire flotte[6];           // Les 6 navires
-    int naviresRestants;        // Navires non coulés
-} Joueur;
 
 // Partie
 typedef struct {

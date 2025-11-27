@@ -11,22 +11,12 @@ int main(void) {
     char saisie[4];
     EtatCase grille[10][10];
     Position pos;
+    Joueur *joueur;
     printf("Entrez la case visé\n");
     scanf("%3s", saisie);
     initialiserGrille(grille);
-    afficherGrille(grille,0);
-    switch (convertirCoordonnees(saisie,&pos)) {
-        case 1:
-            printf("Erreur ligne");
-            break;
-        case 2:
-            printf("Erreur colonne");
-            break;
-        case 3:
-            printf("Format Invalide");
-            break;
-        default:
-            break;
-    }
+    joueur->plateau.grilleFlotte = grille;
+    placerFlotte(joueur);
+
     return 0;
 }
