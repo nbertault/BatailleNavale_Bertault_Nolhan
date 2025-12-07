@@ -3,33 +3,70 @@
 //
 
 #include "../include/joueur.h"
+
+#include <iso646.h>
+
 #include "../include/affichage.h"
 #include "../include/utilitaires.h"
 
 void placerFlotte(Joueur *joueur) {
     char coordonnees[3], sens;
+    Orientation orientation;
     Position pos;
-    afficherGrille(joueur->plateau.grilleFlotte, 1);
-    for (int i = joueur->naviresRestants; i > 0; i--) {
-        printf("Coordonnées du bateau ?");
-        scanf("%s", coordonnees);
 
-        switch (convertirCoordonnees(coordonnees, &pos)) { //Vérifier les coordonnées rentrées
-            case 1:
-                printf("Erreur ligne");
-                break;
-            case 2:
-                printf("Erreur colonne");
-                break;
-            case 3:
-                printf("Format Invalide");
-                break;
-            default:
-                break;
-        }
-        printf("Dans quelle sens ? (V ou H)");
-        scanf("%c", sens);
-        calculerPositions(&joueur->flotte[i], pos, (sens = 'V' ? VERTICAL  : HORIZONTAL));
+    for (int i = 0; i < NB_NAVIRES; i++) {
+        sens = ' ';
 
+        afficherGrille(joueur->plateau.grilleFlotte, 1);
+
+        printf("Vous etes en train de placer : %s\n", joueur->flotte[i].nom);
+
+        coordonnees[0] = '\0';
+        int bateauPlace = 1;
+        do {
+            printf("Coordonnees du bateau ?\n");
+            scanf(" %s", coordonnees);
+
+            switch (convertirCoordonnees(coordonnees, &pos)) { //Vérifier les coordonnées rentrées
+                case 0:
+                    printf("Dans quelle sens ? (V ou H)\n");
+                    scanf(" %c", &sens);
+
+                    if (sens == 'V') {
+                        orientation = VERTICAL;
+                    } else if (sens == 'H') {
+                        orientation = HORIZONTAL;
+                    }
+
+                    break;
+                case 1:
+                    printf("Position hors de la grille (Colonnes: A-J)\n");
+                    break;
+                case 2:
+                    printf("Position hors de la grille (Lignes: 1-10)\n");
+                    break;
+                case 3:
+                    printf("Coordonnées invalides. Utilisez le format lettre+chiffre (ex: B5)\n");
+                    break;
+                default:
+                    break;
+            }
+
+            switch(verifierPlacement(joueur->plateau.grilleFlotte,pos,joueur->flotte[i].taille, orientation)) {
+                case 0:
+                    calculerPositions(&joueur->flotte[i], pos, orientation);
+                    placerNavireSurGrille(joueur->plateau.grilleFlotte,&joueur->flotte[i]);
+                    bateauPlace = 0;
+                    break;
+                case 1:
+                    printf("Le bateau depasse du plateau avec cette orientation\n");
+                    break;
+                case 2:
+                    printf("Un navire occupe deja cette position\n");
+                    break;
+                default:
+                    break;
+            }
+        }while (bateauPlace);
     }
 }

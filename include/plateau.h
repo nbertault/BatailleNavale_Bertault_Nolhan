@@ -37,10 +37,10 @@ void initialiserGrille(EtatCase grille[10][10]);
 int verifierPlacement(EtatCase grille[10][10], Position debut,
                       int taille, Orientation orientation);
 
-/*
 // Place un navire sur la grille
 void placerNavireSurGrille(EtatCase grille[10][10], Navire *navire);
 
+/*
 // Applique un tir sur la grille
 ResultatTir appliquerTir(Joueur *cible, Position pos);
 

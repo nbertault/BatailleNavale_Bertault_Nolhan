@@ -8,21 +8,19 @@ int convertirCoordonnees(const char *saisie, Position *pos) {
     int erreur = 0, ligne = -1, colonne = -1;
 
     if (saisie[0] >= 'A' && saisie[0] <= 'J')
-        ligne = saisie[0] - 'A';
+        colonne = saisie[0] - 'A';
     else if (saisie[0] >= 'a' && saisie[0] <= 'j')
-        ligne = saisie[0] - 'a';
-    else if ((saisie[0] < 'A' && saisie[0] > 'J') || (saisie[0] < 'a' && saisie[0] > 'j'))
-        erreur = 1; //Erreur ligne
+        colonne = saisie[0] - 'a';
     else
         erreur = 3; //Format invalide
 
     if (saisie[1] >= '1' && saisie[1] <= '9') {
-        if (saisie[2] == '1' && saisie[3] == '0')
-            colonne = 9;
+        if (saisie[1] == '1' && saisie[2] == '0')
+            ligne = 9;
         else
-            colonne = saisie[2] - '0';
+            ligne = saisie[1] - '0' - 1;
     } else if (saisie[1] == '0' || saisie[2] > '0')
-        erreur = 2; //Erreur colonne
+        erreur = 2; //Erreur ligne
     else
         erreur = 3; //Format invalide
 

@@ -37,9 +37,9 @@ Navire creerNavire(TypeNavire type) {
     }
     Navire bateau;
 
-    for (int i = 1; i <= taille; taille++) { //initialise le navire à l'horizontal et sur la première ligne
-        bateau.positions->ligne = 1;
-        bateau.positions->colonne = i;
+    for (int i = 1; i <= taille; i++) { //initialise le navire à l'horizontal et sur la première ligne
+        bateau.positions->ligne = 0;
+        bateau.positions->colonne = 0;
     }
 
     bateau.type = type;
@@ -56,13 +56,13 @@ void calculerPositions(Navire *navire, Position debut, Orientation orientation) 
 
     if (orientation == VERTICAL) {
         for (int i = 0; i < taille; i++) {
-                navire->positions[i].ligne = debut.ligne;
-                navire->positions[i].colonne = debut.colonne+i;
+                navire->positions[i].ligne = debut.ligne+i;
+                navire->positions[i].colonne = debut.colonne;
         }
     } else {
         for (int i = 0; i < taille; i++) {
-            navire->positions[i].ligne = debut.ligne+i;
-            navire->positions[i].colonne = debut.colonne;
+            navire->positions[i].ligne = debut.ligne;
+            navire->positions[i].colonne = debut.colonne+i;
         }
     }
 }
