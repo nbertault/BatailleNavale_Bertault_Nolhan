@@ -68,3 +68,26 @@ void placerNavireSurGrille(EtatCase grille[10][10], Navire *navire) {
         */
     }
 }
+
+ResultatTir appliquerTir(Joueur *cible, Position pos) {
+    ResultatTir resultat;
+    if ((pos.ligne < TAILLE_GRILLE && pos.ligne >= 0)
+        && (pos.colonne < TAILLE_GRILLE && pos.colonne >= 0)) {
+
+    if (cible->plateau.grilleFlotte[pos.ligne][pos.colonne] != MANQUE ||
+        cible->plateau.grilleFlotte[pos.ligne][pos.colonne] != TOUCHE) {
+        resultat = TIR_DEJA_JOUE;
+        if (cible->plateau.grilleFlotte[pos.ligne][pos.colonne] == NAVIRE) {
+            cible->plateau.grilleFlotte[pos.ligne][pos.colonne] = TOUCHE;
+            resultat = TIR_TOUCHE;
+        } else if (cible->plateau.grilleFlotte[pos.ligne][pos.colonne] == VIDE){
+            cible->plateau.grilleFlotte[pos.ligne][pos.colonne] = MANQUE;
+            resultat = TIR_EAU;
+        }
+        }
+    } else {
+        resultat = TIR_INVALIDE;
+    }
+
+    return resultat;
+}

@@ -5,6 +5,7 @@
 #ifndef ALGORITHMEFONDAMENTAUXTP3_PLATEAU_H
 #define ALGORITHMEFONDAMENTAUXTP3_PLATEAU_H
 #include "constante.h"
+#include "joueur.h"
 #include "navire.h"
 
 // État d'une case
@@ -40,10 +41,10 @@ int verifierPlacement(EtatCase grille[10][10], Position debut,
 // Place un navire sur la grille
 void placerNavireSurGrille(EtatCase grille[10][10], Navire *navire);
 
-/*
 // Applique un tir sur la grille
 ResultatTir appliquerTir(Joueur *cible, Position pos);
 
+/*
 // Applique un tir en croix
 void appliquerTirCroix(Joueur *tireur, Joueur *cible, Position centre);
 */
