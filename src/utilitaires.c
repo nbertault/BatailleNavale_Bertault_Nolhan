@@ -7,19 +7,21 @@
 int convertirCoordonnees(const char *saisie, Position *pos) {
     int erreur = 0, ligne = -1, colonne = -1;
 
-    if (saisie[0] >= 'A' && saisie[0] <= 'J')
+    // Défini la colonne en fonction de l'entrée
+    if (saisie[0] >= 'A' && saisie[0] <= 'J') // Si la case est en majuscule
         colonne = saisie[0] - 'A';
-    else if (saisie[0] >= 'a' && saisie[0] <= 'j')
+    else if (saisie[0] >= 'a' && saisie[0] <= 'j') // Si la case est en minuscule
         colonne = saisie[0] - 'a';
     else
         erreur = 3; //Format invalide
 
-    if (saisie[1] >= '1' && saisie[1] <= '9') {
-        if (saisie[1] == '1' && saisie[2] == '0')
+    // Défini la ligne en fonction de l'entrée
+    if (saisie[1] >= '1' && saisie[1] <= '9') { // Dans le cas où la case est bien rentrée
+        if (saisie[1] == '1' && saisie[2] == '0') // 0 <= ligne <= 9
             ligne = 9;
         else
-            ligne = saisie[1] - '0' - 1;
-    } else if (saisie[1] == '0' || saisie[2] > '0')
+            ligne = saisie[1] - '0' - 1; // ligne = 10
+    } else if (saisie[1] == '0' || saisie[2] > '0') // 0 > ligne > 10
         erreur = 2; //Erreur ligne
     else
         erreur = 3; //Format invalide

@@ -7,7 +7,7 @@
 void initialiserGrille(EtatCase grille[TAILLE_GRILLE][TAILLE_GRILLE]) {
     for (int i = 0; i < TAILLE_GRILLE; i++) {
         for (int j = 0; j < TAILLE_GRILLE; j++) {
-            grille[i][j] = VIDE;
+            grille[i][j] = VIDE; // Défini l'état de toute les cases à VIDE
         }
     }
 }
@@ -19,22 +19,22 @@ int verifierPlacement(EtatCase grille[TAILLE_GRILLE][TAILLE_GRILLE], Position de
     switch (orientation) {
         case HORIZONTAL:
             if (debut.colonne + taille > TAILLE_GRILLE) {
-                erreur = 1; //case hors plateau
+                erreur = 1; // case hors plateau
             }
             for (int i = 0; i < taille; i++) {
                 if (grille[debut.ligne][debut.colonne + i] != VIDE) {
-                    erreur = 2; //case occupée
+                    erreur = 2; // case occupée
                 }
             }
             break;
 
             case VERTICAL:
             if (debut.ligne + taille > TAILLE_GRILLE) {
-                erreur = 1; //case hors plateau
+                erreur = 1; // case hors plateau
             }
             for (int i = 0; i < taille; i++) {
                 if (grille[debut.ligne + i][debut.colonne] != VIDE) {
-                    erreur = 2; //case occupée
+                    erreur = 2; // case occupée
                 }
             }
             break;
@@ -47,8 +47,8 @@ int verifierPlacement(EtatCase grille[TAILLE_GRILLE][TAILLE_GRILLE], Position de
 
 void placerNavireSurGrille(EtatCase grille[10][10], Navire *navire) {
     for (int i = 0; i < navire->taille; i++) {
-        grille[navire->positions[i].ligne][navire->positions[i].colonne] = NAVIRE;
-        /* switch (navire->type) { # A voir pour l'affichage des différents navires
+        grille[navire->positions[i].ligne][navire->positions[i].colonne] = NAVIRE; // Défini les cases à l'état NAVIRE
+        /* switch (navire->type) { // A voir pour l'affichage des différents navires
             case CONTRE_TORPILLEUR:
                 grille[navire->positions[i].ligne][navire->positions[i].colonne] = 'T';
                 break;

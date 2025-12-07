@@ -9,7 +9,7 @@ Navire creerNavire(TypeNavire type) {
     int casesTouchees = 0, estCoule = 0, taille;
     char nom[20];
 
-    switch (type) { //défini la taille et le nom du navire en fonction du type en entré
+    switch (type) { // Défini la taille et le nom du navire en fonction du type en entré
         case PORTE_AVIONS:
             strcpy(nom, "Porte-avions");
             taille = 5;
@@ -37,7 +37,7 @@ Navire creerNavire(TypeNavire type) {
     }
     Navire bateau;
 
-    for (int i = 1; i <= taille; i++) { //initialise le navire à l'horizontal et sur la première ligne
+    for (int i = 1; i <= taille; i++) { // Initialise le navire à l'horizontal et sur la première ligne
         bateau.positions->ligne = 0;
         bateau.positions->colonne = 0;
     }
@@ -70,7 +70,7 @@ void calculerPositions(Navire *navire, Position debut, Orientation orientation) 
 
 const char* getNomNavire(TypeNavire type) {
     char* nom[20];
-    switch (type) { //défini la taille et le nom du navire en fonction du type en entré
+    switch (type) { // Défini le nom du navire en fonction du type en entrée
         case PORTE_AVIONS:
             strcpy(*nom, "Porte-avions");
             break;
@@ -96,7 +96,7 @@ const char* getNomNavire(TypeNavire type) {
 int getTailleNavire(TypeNavire type) {
     int taille;
 
-    switch (type) { //défini la taille et le nom du navire en fonction du type en entré
+    switch (type) { // Défini la taille en fonction du type en entrée
         case PORTE_AVIONS:
             taille = 5;
             break;
