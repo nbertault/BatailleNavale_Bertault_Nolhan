@@ -90,12 +90,13 @@ ResultatTir appliquerTir(Joueur *cible, Position pos) {
                     }
                     i++;
                 }while (i < NB_NAVIRES - 1 && navireTouche == -1);
-                cible->flotte[i].casesTouchees+=1;
+                cible->flotte[i].casesTouchees++;
                 cible->plateau.grilleFlotte[pos.ligne][pos.colonne] = TOUCHE;
 
                 if (cible->flotte[i].casesTouchees == cible->flotte[i].taille) {
                     resultat = TIR_COULE;
                     cible->flotte[i].estCoule = 1;
+                    cible->naviresRestants--;
                 } else {
                 resultat = TIR_TOUCHE;
                 }
