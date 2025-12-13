@@ -68,18 +68,20 @@ typedef struct {
     int naviresRestants;        // Navires non coulés
 } Joueur;
 
-/*
-
 // Partie
 typedef struct {
     Joueur joueur1;
     Joueur joueur2;
     int joueurActif;            // 1 ou 2
     int partieTerminee;         // 0 = en cours, 1 = terminée
-} Partie; */
+} Partie;
 
 #define TAILLE_GRILLE 10
 #define NB_NAVIRES 6
 #define NB_TYPES_NAVIRES 5
+
+#define ROUGE "\033[31m"
+#define VERT "\033[32m"
+#define RESET "\033[0m"
 
 #endif //ALGORITHMEFONDAMENTAUXTP3_CONSTANTE_H

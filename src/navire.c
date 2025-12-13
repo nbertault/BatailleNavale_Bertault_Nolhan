@@ -9,7 +9,8 @@ Navire creerNavire(TypeNavire type) {
     int casesTouchees = 0, estCoule = 0, taille;
     char nom[20];
 
-    switch (type) { // Défini la taille et le nom du navire en fonction du type en entré
+    switch (type) {
+        // Défini la taille et le nom du navire en fonction du type en entré
         case PORTE_AVIONS:
             strcpy(nom, "Porte-avions");
             taille = 5;
@@ -37,7 +38,8 @@ Navire creerNavire(TypeNavire type) {
     }
     Navire bateau;
 
-    for (int i = 1; i <= taille; i++) { // Initialise le navire à l'horizontal et sur la première ligne
+    for (int i = 1; i <= taille; i++) {
+        // Initialise le navire à l'horizontal et sur la première ligne
         bateau.positions->ligne = 0;
         bateau.positions->colonne = 0;
     }
@@ -56,21 +58,32 @@ void calculerPositions(Navire *navire, Position debut, Orientation orientation) 
 
     if (orientation == VERTICAL) {
         for (int i = 0; i < taille; i++) {
-                navire->positions[i].ligne = debut.ligne+i;
-                navire->positions[i].colonne = debut.colonne;
+            navire->positions[i].ligne = debut.ligne + i;
+            navire->positions[i].colonne = debut.colonne;
         }
     } else {
         for (int i = 0; i < taille; i++) {
             navire->positions[i].ligne = debut.ligne;
-            navire->positions[i].colonne = debut.colonne+i;
+            navire->positions[i].colonne = debut.colonne + i;
         }
     }
 }
 
+int estCoule(Navire *navire) {
+    int retour;
+    if (navire->casesTouchees == navire->taille) {
+        navire->estCoule = 1;
+        retour = 1;
+    } else
+        retour = 0;
 
-const char* getNomNavire(TypeNavire type) {
-    char* nom[20];
-    switch (type) { // Défini le nom du navire en fonction du type en entrée
+    return retour;
+}
+
+const char *getNomNavire(TypeNavire type) {
+    char *nom[20];
+    switch (type) {
+        // Défini le nom du navire en fonction du type en entrée
         case PORTE_AVIONS:
             strcpy(*nom, "Porte-avions");
             break;
@@ -96,7 +109,8 @@ const char* getNomNavire(TypeNavire type) {
 int getTailleNavire(TypeNavire type) {
     int taille;
 
-    switch (type) { // Défini la taille en fonction du type en entrée
+    switch (type) {
+        // Défini la taille en fonction du type en entrée
         case PORTE_AVIONS:
             taille = 5;
             break;

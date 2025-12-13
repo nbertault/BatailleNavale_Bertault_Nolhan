@@ -21,10 +21,10 @@ void afficherResultatTir(ResultatTir resultat, const char *nomNavire);
 
 // Affiche le message de victoire
 void afficherVictoire(const char *nomGagnant);
-
+*/
 // Efface l'écran (transition entre joueurs)
 void effacerEcran(void);
-
+/*
 // Affiche la liste des navires à placer
 void afficherNaviresAPlacer(Joueur *joueur);
 */

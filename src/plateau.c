@@ -6,6 +6,8 @@
 
 #include <stdio.h>
 
+#include "../include/navire.h"
+
 void initialiserGrille(EtatCase grille[TAILLE_GRILLE][TAILLE_GRILLE]) {
     for (int i = 0; i < TAILLE_GRILLE; i++) {
         for (int j = 0; j < TAILLE_GRILLE; j++) {
@@ -30,7 +32,7 @@ int verifierPlacement(EtatCase grille[TAILLE_GRILLE][TAILLE_GRILLE], Position de
             }
             break;
 
-            case VERTICAL:
+        case VERTICAL:
             if (debut.ligne + taille > TAILLE_GRILLE) {
                 erreur = 1; // case hors plateau
             }
@@ -42,7 +44,7 @@ int verifierPlacement(EtatCase grille[TAILLE_GRILLE][TAILLE_GRILLE], Position de
             break;
     }
 
-    return  erreur;
+    return erreur;
 }
 
 
@@ -76,12 +78,12 @@ ResultatTir appliquerTir(Joueur *cible, Position pos) {
 
     if ((pos.ligne < TAILLE_GRILLE && pos.ligne >= 0)
         && (pos.colonne < TAILLE_GRILLE && pos.colonne >= 0)) {
-
-    if (cible->plateau.grilleFlotte[pos.ligne][pos.colonne] != MANQUE ||
-        cible->plateau.grilleFlotte[pos.ligne][pos.colonne] != TOUCHE) {
+        if (cible->plateau.grilleFlotte[pos.ligne][pos.colonne] != MANQUE ||
+            cible->plateau.grilleFlotte[pos.ligne][pos.colonne] != TOUCHE) {
             resultat = TIR_DEJA_JOUE;
             if (cible->plateau.grilleFlotte[pos.ligne][pos.colonne] == NAVIRE) {
-                do { // Retrouver le navire qui est touché
+                do {
+                    // Retrouver le navire qui est touché
                     for (int j = 0; j < cible->flotte[i].taille; j++) {
                         if (cible->flotte[i].positions->ligne == pos.ligne &&
                             cible->flotte[i].positions->colonne == pos.colonne) {
@@ -89,19 +91,17 @@ ResultatTir appliquerTir(Joueur *cible, Position pos) {
                         }
                     }
                     i++;
-                }while (i < NB_NAVIRES - 1 && navireTouche == -1);
+                } while (i < NB_NAVIRES - 1 && navireTouche == -1);
                 cible->flotte[i].casesTouchees++;
                 cible->plateau.grilleFlotte[pos.ligne][pos.colonne] = TOUCHE;
 
-                if (cible->flotte[i].casesTouchees == cible->flotte[i].taille) {
+                if (estCoule(&cible->flotte[i]) == 1) {
                     resultat = TIR_COULE;
-                    cible->flotte[i].estCoule = 1;
                     cible->naviresRestants--;
                 } else {
-                resultat = TIR_TOUCHE;
+                    resultat = TIR_TOUCHE;
                 }
-
-            } else if (cible->plateau.grilleFlotte[pos.ligne][pos.colonne] == VIDE){
+            } else if (cible->plateau.grilleFlotte[pos.ligne][pos.colonne] == VIDE) {
                 cible->plateau.grilleFlotte[pos.ligne][pos.colonne] = MANQUE;
                 resultat = TIR_EAU;
             }
@@ -114,7 +114,6 @@ ResultatTir appliquerTir(Joueur *cible, Position pos) {
 }
 
 void appliquerTirCroix(Joueur *tireur, Joueur *cible, Position centre) {
-
     appliquerTir(cible, centre);
 
     if (centre.ligne + 1 < TAILLE_GRILLE) {

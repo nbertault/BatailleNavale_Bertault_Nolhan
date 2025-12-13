@@ -60,19 +60,19 @@ void placerFlotte(Joueur *joueur) {
                 case 0:
                     // Défini les positions du navire
                     calculerPositions(&joueur->flotte[i], pos, orientation);*/
-                    // Place le navire sur la grille
-                    placerNavireSurGrille(joueur->plateau.grilleFlotte,&joueur->flotte[i]);
-                    bateauPlace = 0;
-                    /*break;
-                case 1:
-                    printf("Le bateau depasse du plateau avec cette orientation\n");
-                    break;
-                case 2:
-                    printf("Un navire occupe deja cette position\n");
-                    break;
-                default:
-                    break;
-            }*/
-        }while (bateauPlace);
+            // Place le navire sur la grille
+            placerNavireSurGrille(joueur->plateau.grilleFlotte, &joueur->flotte[i]);
+            bateauPlace = 0;
+            /*break;
+        case 1:
+            printf("Le bateau depasse du plateau avec cette orientation\n");
+            break;
+        case 2:
+            printf("Un navire occupe deja cette position\n");
+            break;
+        default:
+            break;
+    }*/
+        } while (bateauPlace);
     }
 }

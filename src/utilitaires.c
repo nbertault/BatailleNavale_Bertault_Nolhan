@@ -16,7 +16,8 @@ int convertirCoordonnees(const char *saisie, Position *pos) {
         erreur = 3; //Format invalide
 
     // Défini la ligne en fonction de l'entrée
-    if (saisie[1] >= '1' && saisie[1] <= '9') { // Dans le cas où la case est bien rentrée
+    if (saisie[1] >= '1' && saisie[1] <= '9') {
+        // Dans le cas où la case est bien rentrée
         if (saisie[1] == '1' && saisie[2] == '0') // 0 <= ligne <= 9
             ligne = 9;
         else

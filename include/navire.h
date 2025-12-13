@@ -12,14 +12,13 @@ Navire creerNavire(TypeNavire type);
 // Calcule les positions d'un navire à partir de sa position de départ
 void calculerPositions(Navire *navire, Position debut, Orientation orientation);
 
-/*
 // Vérifie si un navire est coulé
 int estCoule(Navire *navire);
-*/
 
 // Retourne le nom d'un type de navire
 const char* getNomNavire(TypeNavire type);
 
 // Retourne la taille d'un type de navire
 int getTailleNavire(TypeNavire type);
+
 #endif //ALGORITHMEFONDAMENTAUXTP3_NAVIRE_H
