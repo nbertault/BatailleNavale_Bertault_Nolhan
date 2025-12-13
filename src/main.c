@@ -38,23 +38,9 @@ int main(void) {
     scanf("%s", saisieTire);
     convertirCoordonnees(saisieTire, &posTire);
 
-    switch (appliquerTir(&joueur1, posTire)) {
-        case TIR_COULE:
-            printf("Bateau coule");
-            break;
-        case TIR_EAU:
-            printf("Tire rate");
-            break;
-        case TIR_DEJA_JOUE:
-            printf("Tire deja placer");
-            break;
-        case TIR_INVALIDE:
-            printf("Mauvaise Coordonnees");
-            break;
-        case TIR_TOUCHE:
-            printf("Bateau touche");
-            break;
-    }
+    appliquerTirCroix(&joueur2, &joueur1, posTire);
+
+    afficherGrille(joueur1.plateau.grilleFlotte, 1);
 
     return 0;
 }

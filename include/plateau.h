@@ -19,8 +19,7 @@ void placerNavireSurGrille(EtatCase grille[10][10], Navire *navire);
 // Applique un tir sur la grille
 ResultatTir appliquerTir(Joueur *cible, Position pos);
 
-/*
 // Applique un tir en croix
 void appliquerTirCroix(Joueur *tireur, Joueur *cible, Position centre);
-*/
+
 #endif //ALGORITHMEFONDAMENTAUXTP3_PLATEAU_H

@@ -111,3 +111,21 @@ ResultatTir appliquerTir(Joueur *cible, Position pos) {
 
     return resultat;
 }
+
+void appliquerTirCroix(Joueur *tireur, Joueur *cible, Position centre) {
+
+    appliquerTir(cible, centre);
+
+    if (centre.ligne + 1 < TAILLE_GRILLE) {
+        appliquerTir(cible, (Position){centre.ligne + 1, centre.colonne});
+    }
+    if (centre.ligne - 1 > 0) {
+        appliquerTir(cible, (Position){centre.ligne - 1, centre.colonne});
+    }
+    if (centre.colonne + 1 < TAILLE_GRILLE) {
+        appliquerTir(cible, (Position){centre.ligne, centre.colonne + 1});
+    }
+    if (centre.colonne - 1 > 0) {
+        appliquerTir(cible, (Position){centre.ligne, centre.colonne - 1});
+    }
+}
