@@ -5,7 +5,6 @@
 #ifndef ALGORITHMEFONDAMENTAUXTP3_UTILITAIRE_H
 #define ALGORITHMEFONDAMENTAUXTP3_UTILITAIRE_H
 #include "constante.h"
-#include "navire.h"
 
 // Convertit une saisie utilisateur (ex: "B5") en Position
 int convertirCoordonnees(const char *saisie, Position *pos);

@@ -4,7 +4,6 @@
 
 #ifndef ALGORITHMEFONDAMENTAUXTP3_AFFICHAGE_H
 #define ALGORITHMEFONDAMENTAUXTP3_AFFICHAGE_H
-#include "joueur.h"
 #include "plateau.h"
 #include <stdio.h>
 /*

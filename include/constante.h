@@ -11,6 +11,63 @@ typedef struct {
     int colonne;    // 0 à 9 (correspond à A-J pour l'utilisateur)
 } Position;
 
+
+// Orientation d'un navire
+typedef enum {
+    HORIZONTAL,
+    VERTICAL
+} Orientation;
+
+// Type de navire
+typedef enum {
+    PORTE_AVIONS,
+    CROISEUR,
+    CONTRE_TORPILLEUR,
+    SOUS_MARIN,
+    TORPILLEUR
+} TypeNavire;
+
+// Navire
+typedef struct {
+    TypeNavire type;
+    char nom[20];
+    int taille;
+    Position positions[5];      // Tableau des positions occupées
+    int casesTouchees;          // Nombre de cases touchées
+    int estCoule;               // 0 = non, 1 = oui
+} Navire;
+
+// État d'une case
+typedef enum {
+    VIDE,           // Case non occupée, non ciblée
+    NAVIRE,         // Case occupée par un navire (non touché), 'O'
+    TOUCHE,         // Case occupée et touchée, 'X'
+    MANQUE          // Case ciblée mais vide (à l'eau), '-'
+} EtatCase;
+
+// Résultat d'un tir
+typedef enum {
+    TIR_EAU,
+    TIR_TOUCHE,
+    TIR_COULE,
+    TIR_INVALIDE,
+    TIR_DEJA_JOUE
+} ResultatTir;
+
+// Plateau d'un joueur
+typedef struct {
+    EtatCase grilleFlotte[10][10];  // Grille avec ses navires
+    EtatCase grilleRadar[10][10];   // Grille de suivi des tirs
+} Plateau;
+
+// Joueur
+typedef struct {
+    char nom[50];
+    Plateau plateau;
+    Navire flotte[6];           // Les 6 navires
+    int naviresRestants;        // Navires non coulés
+} Joueur;
+
 /*
 
 // Partie

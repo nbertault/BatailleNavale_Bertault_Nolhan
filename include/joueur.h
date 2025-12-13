@@ -5,16 +5,6 @@
 #ifndef ALGORITHMEFONDAMENTAUXTP3_JOUEUR_H
 #define ALGORITHMEFONDAMENTAUXTP3_JOUEUR_H
 #include "constante.h"
-#include "navire.h"
-#include "plateau.h"
-
-// Joueur
-typedef struct {
-    char nom[50];
-    Plateau plateau;
-    Navire flotte[6];           // Les 6 navires
-    int naviresRestants;        // Navires non coulés
-} Joueur;
 
 /*
 // Initialise un joueur avec son nom

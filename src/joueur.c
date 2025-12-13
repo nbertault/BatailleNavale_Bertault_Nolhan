@@ -18,12 +18,13 @@ void placerFlotte(Joueur *joueur) {
         // Affiche la grille
         afficherGrille(joueur->plateau.grilleFlotte, 1);
 
-        // Affiche le neavire en cours de placement
-        printf("Vous etes en train de placer : %s\n", joueur->flotte[i].nom);
+        // Affiche le navire en cours de placement
+        // printf("Vous etes en train de placer : %s\n", joueur->flotte[i].nom);
 
         coordonnees[0] = '\0';
         int bateauPlace = 1;
         do {
+            /*
             printf("Coordonnees du bateau ?\n");
             scanf(" %s", coordonnees);
 
@@ -58,11 +59,11 @@ void placerFlotte(Joueur *joueur) {
             switch(verifierPlacement(joueur->plateau.grilleFlotte,pos,joueur->flotte[i].taille, orientation)) {
                 case 0:
                     // Défini les positions du navire
-                    calculerPositions(&joueur->flotte[i], pos, orientation);
+                    calculerPositions(&joueur->flotte[i], pos, orientation);*/
                     // Place le navire sur la grille
                     placerNavireSurGrille(joueur->plateau.grilleFlotte,&joueur->flotte[i]);
                     bateauPlace = 0;
-                    break;
+                    /*break;
                 case 1:
                     printf("Le bateau depasse du plateau avec cette orientation\n");
                     break;
@@ -71,7 +72,7 @@ void placerFlotte(Joueur *joueur) {
                     break;
                 default:
                     break;
-            }
+            }*/
         }while (bateauPlace);
     }
 }

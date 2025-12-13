@@ -8,26 +8,53 @@
 #include "../include/utilitaires.h"
 
 int main(void) {
+    char saisie[4],saisieTire[4];
+    Position pos, posTire;
+    Joueur joueur1, joueur2;
 
-    char saisie[4];
-    Position pos;
-    Joueur joueur;
+    printf("Quel est votre nom ?(Joueur1)\n");
+    scanf("%s", joueur1.nom);
 
-    printf("Quel est votre nom ?\n");
-    scanf("%s", joueur.nom);
+    initialiserGrille(joueur1.plateau.grilleFlotte);
 
-    initialiserGrille(joueur.plateau.grilleFlotte);
+    joueur1.naviresRestants = NB_NAVIRES;
+    joueur1.flotte[0] = creerNavire(PORTE_AVIONS);
+    joueur1.flotte[1] = creerNavire(CROISEUR);
+    joueur1.flotte[2] = creerNavire(CONTRE_TORPILLEUR);
+    joueur1.flotte[3] = creerNavire(CONTRE_TORPILLEUR);
+    joueur1.flotte[4] = creerNavire(SOUS_MARIN);
+    joueur1.flotte[5] = creerNavire(TORPILLEUR);
 
-    joueur.naviresRestants = NB_NAVIRES;
-    joueur.flotte[0] = creerNavire(PORTE_AVIONS);
-    joueur.flotte[1] = creerNavire(CROISEUR);
-    joueur.flotte[2] = creerNavire(CONTRE_TORPILLEUR);
-    joueur.flotte[3] = creerNavire(CONTRE_TORPILLEUR);
-    joueur.flotte[4] = creerNavire(SOUS_MARIN);
-    joueur.flotte[5] = creerNavire(TORPILLEUR);
+    // Placement Manuel pour les tests
+    calculerPositions(&joueur1.flotte[0], (Position){2,2}, HORIZONTAL);
+    calculerPositions(&joueur1.flotte[1], (Position){3,3}, VERTICAL);
+    calculerPositions(&joueur1.flotte[2], (Position){9,0}, HORIZONTAL);
+    calculerPositions(&joueur1.flotte[3], (Position){6,5}, HORIZONTAL);
+    calculerPositions(&joueur1.flotte[4], (Position){7,4}, HORIZONTAL);
+    calculerPositions(&joueur1.flotte[5], (Position){8,0}, HORIZONTAL);
+    placerFlotte(&joueur1);
 
-    placerFlotte(&joueur);
+    printf("Ou tirez-vous ?");
+    scanf("%s", saisieTire);
+    convertirCoordonnees(saisieTire, &posTire);
 
+    switch (appliquerTir(&joueur1, posTire)) {
+        case TIR_COULE:
+            printf("Bateau coule");
+            break;
+        case TIR_EAU:
+            printf("Tire rate");
+            break;
+        case TIR_DEJA_JOUE:
+            printf("Tire deja placer");
+            break;
+        case TIR_INVALIDE:
+            printf("Mauvaise Coordonnees");
+            break;
+        case TIR_TOUCHE:
+            printf("Bateau touche");
+            break;
+    }
 
     return 0;
 }
