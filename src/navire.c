@@ -3,6 +3,8 @@
 //
 
 #include "../include/navire.h"
+
+#include <stdlib.h>
 #include <string.h>
 
 Navire creerNavire(TypeNavire type) {
@@ -81,29 +83,29 @@ int estCoule(Navire *navire) {
 }
 
 const char *getNomNavire(TypeNavire type) {
-    char *nom[20];
+    char *nom = malloc(20);
     switch (type) {
         // Défini le nom du navire en fonction du type en entrée
         case PORTE_AVIONS:
-            strcpy(*nom, "Porte-avions");
+            strcpy(nom, "Porte-avions");
             break;
         case CROISEUR:
-            strcpy(*nom, "Croiseur");
+            strcpy(nom, "Croiseur");
             break;
         case CONTRE_TORPILLEUR:
-            strcpy(*nom, "Contre-torpilleur");
+            strcpy(nom, "Contre-torpilleur");
             break;
         case SOUS_MARIN:
-            strcpy(*nom, "Sous-marin");
+            strcpy(nom, "Sous-marin");
             break;
         case TORPILLEUR:
-            strcpy(*nom, "Torpilleur");
+            strcpy(nom, "Torpilleur");
             break;
         default:
-            strcpy(*nom, "Non défini");
+            strcpy(nom, "Non défini");
             break;
     }
-    return *nom;
+    return nom;
 }
 
 int getTailleNavire(TypeNavire type) {
