@@ -6,6 +6,8 @@
 
 #include <stdio.h>
 
+#include "../include/affichage.h"
+#include "../include/joueur.h"
 #include "../include/navire.h"
 
 void initialiserGrille(EtatCase grille[TAILLE_GRILLE][TAILLE_GRILLE]) {
@@ -78,26 +80,25 @@ ResultatTir appliquerTir(Joueur *cible, Position pos) {
 
     if ((pos.ligne < TAILLE_GRILLE && pos.ligne >= 0)
         && (pos.colonne < TAILLE_GRILLE && pos.colonne >= 0)) {
-        if (cible->plateau.grilleFlotte[pos.ligne][pos.colonne] != MANQUE ||
+        if (cible->plateau.grilleFlotte[pos.ligne][pos.colonne] != MANQUE &&
             cible->plateau.grilleFlotte[pos.ligne][pos.colonne] != TOUCHE) {
-            resultat = TIR_DEJA_JOUE;
             if (cible->plateau.grilleFlotte[pos.ligne][pos.colonne] == NAVIRE) {
                 do {
                     // Retrouver le navire qui est touché
                     for (int j = 0; j < cible->flotte[i].taille; j++) {
-                        if (cible->flotte[i].positions->ligne == pos.ligne &&
-                            cible->flotte[i].positions->colonne == pos.colonne) {
+                        if (cible->flotte[i].positions[j].ligne == pos.ligne &&
+                            cible->flotte[i].positions[j].colonne == pos.colonne) {
                             navireTouche = i;
                         }
                     }
                     i++;
-                } while (i < NB_NAVIRES - 1 && navireTouche == -1);
-                cible->flotte[i].casesTouchees++;
+                } while (i - 1 < NB_NAVIRES && navireTouche == -1);
+                cible->flotte[navireTouche].casesTouchees++;
                 cible->plateau.grilleFlotte[pos.ligne][pos.colonne] = TOUCHE;
 
-                if (estCoule(&cible->flotte[i]) == 1) {
+                if (estCoule(&cible->flotte[navireTouche])) {
                     resultat = TIR_COULE;
-                    cible->naviresRestants--;
+                    compterNaviresRestants(cible);
                 } else {
                     resultat = TIR_TOUCHE;
                 }
@@ -105,6 +106,8 @@ ResultatTir appliquerTir(Joueur *cible, Position pos) {
                 cible->plateau.grilleFlotte[pos.ligne][pos.colonne] = MANQUE;
                 resultat = TIR_EAU;
             }
+        } else {
+            resultat = TIR_DEJA_JOUE;
         }
     } else {
         resultat = TIR_INVALIDE;
@@ -114,18 +117,57 @@ ResultatTir appliquerTir(Joueur *cible, Position pos) {
 }
 
 void appliquerTirCroix(Joueur *tireur, Joueur *cible, Position centre) {
-    appliquerTir(cible, centre);
+    ResultatTir tir1 = appliquerTir(cible, centre);
+
+    if (tir1 == TIR_TOUCHE || tir1 == TIR_COULE)
+        tireur->precisionTir++;
+
+    afficherResultatTir(tir1, getNavire(*cible, centre).nom);
+    tireur->plateau.grilleRadar[centre.ligne][centre.colonne] = cible->plateau.grilleFlotte[centre.ligne][centre.
+        colonne];
+
 
     if (centre.ligne + 1 < TAILLE_GRILLE) {
-        appliquerTir(cible, (Position){centre.ligne + 1, centre.colonne});
+        ResultatTir tir2 = appliquerTir(cible, (Position){centre.ligne + 1, centre.colonne});
+
+        if (tir2 == TIR_TOUCHE || tir2 == TIR_COULE)
+            tireur->precisionTir++;
+
+        afficherResultatTir(tir2, getNavire(*cible, (Position){centre.ligne + 1, centre.colonne}).nom);
+        tireur->plateau.grilleRadar[centre.ligne + 1][centre.colonne] = cible->plateau.grilleFlotte[centre.ligne + 1][
+            centre.colonne];
     }
-    if (centre.ligne - 1 > 0) {
-        appliquerTir(cible, (Position){centre.ligne - 1, centre.colonne});
+
+    if (centre.ligne - 1 >= 0) {
+        ResultatTir tir3 = appliquerTir(cible, (Position){centre.ligne - 1, centre.colonne});
+
+        if (tir3 == TIR_TOUCHE || tir3 == TIR_COULE)
+            tireur->precisionTir++;
+
+        afficherResultatTir(tir3, getNavire(*cible, (Position){centre.ligne - 1, centre.colonne}).nom);
+        tireur->plateau.grilleRadar[centre.ligne - 1][centre.colonne] = cible->plateau.grilleFlotte[centre.ligne - 1][
+            centre.colonne];
     }
+
     if (centre.colonne + 1 < TAILLE_GRILLE) {
-        appliquerTir(cible, (Position){centre.ligne, centre.colonne + 1});
+        ResultatTir tir4 = appliquerTir(cible, (Position){centre.ligne, centre.colonne + 1});
+
+        if (tir4 == TIR_TOUCHE || tir4 == TIR_COULE)
+            tireur->precisionTir++;
+
+        afficherResultatTir(tir4, getNavire(*cible, (Position){centre.ligne, centre.colonne + 1}).nom);
+        tireur->plateau.grilleRadar[centre.ligne][centre.colonne + 1] = cible->plateau.grilleFlotte[centre.ligne][
+            centre.colonne + 1];
     }
-    if (centre.colonne - 1 > 0) {
-        appliquerTir(cible, (Position){centre.ligne, centre.colonne - 1});
+
+    if (centre.colonne - 1 >= 0) {
+        ResultatTir tir5 = appliquerTir(cible, (Position){centre.ligne, centre.colonne - 1});
+
+        if (tir5 == TIR_TOUCHE || tir5 == TIR_COULE)
+            tireur->precisionTir++;
+
+        afficherResultatTir(tir5, getNavire(*cible, (Position){centre.ligne - 1, centre.colonne}).nom);
+        tireur->plateau.grilleRadar[centre.ligne][centre.colonne - 1] = cible->plateau.grilleFlotte[centre.ligne][
+            centre.colonne - 1];
     }
 }
