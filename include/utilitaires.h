@@ -8,7 +8,7 @@
 
 // Convertit une saisie utilisateur (ex: "B5") en Position
 int convertirCoordonnees(const char *saisie, Position *pos);
-/*
+
 // Demande et valide une saisie de coordonnées
 int saisirCoordonnees(Position *pos);
 
@@ -24,6 +24,7 @@ void viderBuffer(void);
 // Attend une action de l'utilisateur (pause)
 void attendreTouche(void);
 
+/*
 // Génère un nombre aléatoire dans un intervalle
 int aleatoire(int min, int max);
 */
