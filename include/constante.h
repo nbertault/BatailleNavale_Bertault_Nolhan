@@ -62,6 +62,8 @@ typedef struct {
 
 // Joueur
 typedef struct {
+    int nbTirs;                 // Stats
+    int precisionTir;           // (Ajouts perso)
     char nom[50];
     Plateau plateau;
     Navire flotte[6];           // Les 6 navires
