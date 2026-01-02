@@ -6,19 +6,19 @@
 #define ALGORITHMEFONDAMENTAUXTP3_JOUEUR_H
 #include "constante.h"
 
-/*
 // Initialise un joueur avec son nom
 void initialiserJoueur(Joueur *joueur, const char *nom);
-*/
 
 // Gère le placement de tous les navires d'un joueur
 void placerFlotte(Joueur *joueur);
 
-/*
 // Compte les navires restants (non coulés)
 int compterNaviresRestants(Joueur *joueur);
 
 // Met à jour l'état d'un navire après un tir
 void mettreAJourNavire(Joueur *joueur, Position pos);
-*/
+
+// Retourne le navire en fonction du joueur et de la position (ajout perso)
+Navire getNavire(Joueur joueur, Position pos);
+
 #endif //ALGORITHMEFONDAMENTAUXTP3_JOUEUR_H
