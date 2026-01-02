@@ -5,7 +5,7 @@
 #ifndef ALGORITHMEFONDAMENTAUXTP3_JEU_H
 #define ALGORITHMEFONDAMENTAUXTP3_JEU_H
 #include "constante.h"
-/*
+
 // Initialise une nouvelle partie
 void initialiserPartie(Partie *partie);
 
@@ -23,5 +23,4 @@ void changerJoueur(Partie *partie);
 
 // Propose de rejouer
 int demanderRejouer(void);
-*/
 #endif //ALGORITHMEFONDAMENTAUXTP3_JEU_H
